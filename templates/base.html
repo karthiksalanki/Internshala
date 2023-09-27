@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+
+<div class="header">
+  <h1>Intershala</h1>
+</div>
+<div class="topnav">
+  <a href="#">Home</a>
+  <a href="{% url 'internships'%}"> Intership</a>
+  <a href="{% url 'jobs' %}">Jobs</a>
+  {% if user.is_authenticated %}
+  <a href="{% url 'logout' %}">Logout</a>
+  <div class="welcome">
+    <a href="#">welcome {{ user.username }}</a>
+  </div>
+  <div class="topnav">w3-dropdown-click
+    <button class="w3-button" onclick="myFunction()">
+      Dropdown <i class="fa fa-caret-down"></i>
+    </button>
+    <div id="demo" class="topnav">w3-dropdown-content w3-bar-block w3-card
+      <a href="#" class="w3-bar-item w3-button">Link 1</a>
+      <a href="#" class="w3-bar-item w3-button">Link 2</a>
+      <a href="#" class="w3-bar-item w3-button">Link 3</a>
+    </div>
+  </div>
+</div>
+  {% else %}
+  <div class="topnav"></div>
+  <a href="{% url 'login' %}">Login</a>
+  <a href="{% url 'register' %}">Register</a>
+  {% endif %}
+</div>
+<script>
+  function myFunction() {
+    var x = document.getElementById("demo");
+    if (x.className.indexOf("w3-show") == -1) {
+      x.className += " w3-show";
+    } else { 
+      x.className = x.className.replace(" w3-show", "");
+    }
+  }
+</script>
+<p align="center"><b><h1>{{ text }}</h1></b></p>
+<br/>
+<br/>
+<table align="center" ,border="10px" ,border-style="grove" ,>
+  <tr>
+    <th>Role</th>
+    <th>Company Name</th>
+    <th>Location</th>
+    <th>Skills</th>
+    <th>Experience</th>
+    <th>Salary</th>
+    <th>If, Intrested</th>
+  </tr>
+  {% for i in myjobs %}
+  <tr>
+    <td>{{ i.Role }}</td>
+    <td>{{ i.Company_name }}</td>
+    <td>{{ i.Location }}</td>
+    <td>{{ i.Skills }}</td>
+    <td>{{ i.Experience }}</td>
+  </tr>
+  {% endfor %}
+</table>

@@ -1,0 +1,58 @@
+.header {
+  background-color: lightblue;
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+.topnav {
+  background-color: black;
+  overflow: hidden;
+}
+.topnav a {
+  float: left;
+  color: white;
+  text-align: right;
+  padding: 14px 16px;
+  display: block;
+}
+.topnav a:hover {
+  background-color: aliceblue;
+  color: black;
+}
+.welcome {
+  float: right;
+  text-align: right;
+}
+#demo.w3-dropdown-content.w3-bar-block.w3-card.w3-show {
+  display: block !important;
+  text-align: right;
+  padding: 14px 16px;
+  display: block;
+}
+#demo.w3-dropdown-content.w3-bar-block.w3-card {
+  display: none !important;
+  text-align: right;
+  padding: 14px 16px;
+  display: block;
+}
+table,
+th,
+td {
+  border-spacing: 5px;
+  padding: 5px;
+  border: 10px;
+  border-style: groove;
+}
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.change {
+  height: 1250px;
+  width: 700px;
+  background-color: lightgrey;
+  border-style: groove;
+  padding: 25px;
+  margin-left: 375px;
+}

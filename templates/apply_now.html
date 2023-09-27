@@ -1,0 +1,71 @@
+{% extends 'index.html' %}
+  {% block content %}
+		<div class="form">
+      <form method="POST" enctype="multipart/form-data">
+        <h2>Fill the form to apply</h2><br/>
+        {% csrf_token %}
+        <div class="mb-1">
+          <label for="exampleFormControlInput1" class="form-label">First Name:</label>
+          <input type="text" class="form-control" name="fname" id="exampleFormControlInput1" placeholder="FirstName"><br />
+        </div>
+        <div class="mb-2">
+          <label for="exampleFormControlInput2" class="form-label">Last Name:</label>
+          <input type="text" class="form-control" name="lname" id="exampleFormControlInput1" placeholder="LastName"><br />
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput3" class="form-label">Email address:</label>
+          <input type="email" class="form-control" name="email" id="exampleFormControlInput1" placeholder="name@example.com">
+        </div><br />
+        <div class="mb-4">
+          <label for="exampleFormControlInput4" class="form-label">Contact no.</label>
+          <input type="number" class="form-control" name="number" id="exampleFormControlInput1" placeholder="Contact Number">
+        </div><br />
+        <div class="mb-5">
+          <label for="exampleFormControlInput5" class="form-label">Date Of Birth:</label>
+          <input type="date" class="form-control" name="date" id="exampleFormControlInput1" placeholder="Date of birth">
+        </div><br />
+        <div class="mb-6">
+          <label for="exampleFormControlInput6" class="form-label">Address:</label>
+          <input type="text" class="form-control" name="address" id="exampleFormControlInput1" placeholder="Address">
+        </div><br />
+        <div class="mb-7">
+          <label for="exampleFormControlInput7" class="form-label">Mention Your Education Details:</label>
+          <input type="textarea" class="form-control" name="eduaction" id="exampleFormControlInput1" placeholder="Education details">
+        </div><br />
+        <div class="mb-9">
+          <label for="exampleFormControlInput9" class="form-label">Experience:</label>
+          <input type="number" class="form-control" name="experience" id="exampleFormControlInput1" placeholder="Experience">
+        </div><br />
+        <div class="mb-10">
+          <label for="exampleFormControlInput10" class="form-label">Skills (seperated by comma): </label>
+          <input type="textarea" class="form-control" name="skills" id="exampleFormControlInput1" placeholder="Skills">
+        </div><br />
+        <label class="form-check-label" for="flexCheckDefault">
+          Mode of work:
+        </label>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="in-office" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            In-Office
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="remote" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Remote
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="hydrid" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Hybrid
+          </label>
+        </div><br />
+        <label for="resume">Upload Resume:</label>
+        <input type="file" id="resume" name="resume" value="resume" accept=".pdf,.doc,.docx,.txt" required/><br /><br />
+        <input type="submit" onclick="alert('Successfully Applied')" value="submit" />
+        <b>Note : Apply only if you are ok with the job discriptions.</b>
+      </form>
+      </div>
+    </div><br><br>
+{% endblock %}

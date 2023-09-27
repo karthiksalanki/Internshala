@@ -1,0 +1,126 @@
+.header {
+  background-color: lightblue;
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+.topnav {
+  background-color: black;
+  overflow: hidden;
+}
+.topnav a {
+  float: left;
+  color: white;
+  text-align: right;
+  padding: 14px 16px;
+  display: block;
+}
+.topnav a:hover {
+  background-color: aliceblue;
+  color: black;
+}
+.welcome {
+  float: right;
+  text-align: right;
+}
+#demo.w3-dropdown-content.w3-bar-block.w3-card.w3-show {
+  display: block !important;
+  text-align: right;
+  padding: 14px 16px;
+  display: block;
+}
+#demo.w3-dropdown-content.w3-bar-block.w3-card {
+  display: none !important;
+  text-align: right;
+  padding: 14px 16px;
+  display: block;
+  overflow:hidden;
+  position: absolute;
+  right:0;
+  background-color: black;
+  color: white;
+}
+
+#demo.w3-dropdown-content.w3-bar-block.w3-card a:hover {
+  background-color: aliceblue;
+  color: black;
+}
+
+.border table, .border th, .border td {
+  text-align: center;
+  border-spacing: 5px;
+  padding: 5px !important;
+  border: 5px !important;
+  border-style: groove !important;
+  border-width: 10px !important;
+  border-color: inherit;
+  padding: 2px;
+  border-collapse:separate !important;
+  border: 5px solid black;
+}
+
+
+/* .dropdown {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  display: block;
+  overflow:hidden;
+  position: absolute;
+  right:0;
+  background-color: black;
+  color: white;
+} */
+
+.loginform {
+  height: 350px;
+  width: 700px;
+  background-color: lightgrey;
+  border-style: groove;
+  padding: 25px;
+  margin-left: 375px;
+}
+
+.form {
+  height: 1250px;
+  width: 700px;
+  background-color: lightgrey;
+  border-style: groove;
+  padding: 25px;
+  margin-left: 375px;
+}
+
+.changepassword {
+  height: 500px;
+  width: 700px;
+  background-color: lightgrey;
+  border-style: groove;
+  padding: 25px;
+  margin-left: 375px;
+}
+.detail-view{
+  background-color: lightgrey;
+  width: 800px;
+  border-style :groove;
+  border-radius: 5px;
+  padding: 50px;
+  margin-left: 200px;
+}
+.logo{
+  text-align:right;
+}
+.loc{
+  text-align: left;
+}
+.detail-view.salary{
+  text-align: left;
+  float:left;
+}
+.save{
+  float: right;
+
+}
+.button{
+  text-align:center;
+}
+

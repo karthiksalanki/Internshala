@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+{% block content %}enctype="multipart/form-data"
+<div class="loginform">
+  <form method="POST" >
+    <h2>Login </h2><br/>
+    {% csrf_token %}
+    <div class="mb-1">
+      <label for="exampleFormControlInput1" class="form-label">UserName:</label>
+      <input type="text" class="form-control" name="username" id="exampleFormControlInput1" placeholder="UserName"><br />
+    </div>
+    <div class="mb-2">
+      <label for="exampleFormControlInput2" class="form-label">Password:</label>
+      <input type="password" class="form-control" name="password" id="exampleFormControlInput1" placeholder="Password"><br />
+    </div>
+    <input type="submit" value="submit" />
+</div>
+{% endblock %}
+
+{% comment %} <html>
+    <head>
+        <title>Home Page</title>
+    </head>
+    <title>LogIn</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        User Name:<input type="text" name="username" placeholder="user name"><br>
+        Password:<input type="Password" name="Password" placeholder="Password"><br>
+        <input type="submit">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </form>
+</body>
+</html> {% endcomment %}
+
+    {% comment %} <!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>LogIn</h2>
+  <form>
+    <div class="form-group">
+      <label for="text">UserName:</label>
+      <input type="text" id="text" class="form-control" placeholder="Enter userename">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox"> Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+</body> 
+</html> {% endcomment %}
