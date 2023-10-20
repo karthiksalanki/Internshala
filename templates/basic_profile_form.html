@@ -1,0 +1,46 @@
+{% extends 'index.html' %} {% block content %}
+<div class="editform">
+  <form method="POST" enctype="multipart/form-data">
+    <h2>Edit User</h2>
+    <br />
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">User Name:</label>
+        <input type="text" class="form-control" name="username" id="designation" placeholder="{{ data.username }}">
+      </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">First Name:</label>
+      <input type="text" class="form-control" name="firstname" id="designation" placeholder="{{ data.first_name }}" />
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label" >Last Name:</label>
+      <input type="text" class="form-control" name="lastname" id="organization" placeholder="{{ data.last_name }}"/>
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label" >Email:</label>
+      <input type="email" class="form-control" name="email" id="startdate" placeholder="{{ data.email }}"/>
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label" >Password:</label>
+      <input type="password" class="form-control" name="password" id="startdate" placeholder="password"/>
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label" >Confirm Password:</label>
+      <input type="password" class="form-control" name="confirm_password" id="startdate" placeholder="confirm password"/>
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Phone Number:</label>
+      <input type="number" class="form-control" name="phone" id="lastdate" placeholder="{{ profile.phone }}"/>
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Permanent Location:</label>
+        <input type="text" class="form-control" name="permanentlocation"id="organization"placeholder="{{ profile.permanent_location }}"/>
+      </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label" >Present Location:</label>
+      <input type="text" class="form-control" name="presentlocation" id="description" placeholder="{{ profile.present_location }}"/>
+    </div><br>
+    <input type="submit" onclick="alert('Successfully Submitted, You Need To LogIn Again')" value="Save" />
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'index.html' %} {% block content %}
+<div class="projectform">
+  <form method="POST" enctype="multipart/form-data">
+    <h2>Project Form</h2>
+    <br />
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">e.g. Title:</label>
+      <input type="text" class="form-control" name="title" id="designation" placeholder="Designation"/><br />
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Start Date:</label>
+        <input type="date"class="form-control" name="startdate" id="startdate" placeholder="Choose date"/><br />
+        <label for="exampleFormControlInput1" class="form-label">End Date:</label>
+        <input type="date" class="form-control" name="enddate" id="lastdate" placeholder="Choose date" /><br />
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Description:</label>
+        <input type="text" class="form-control" name="description" id="designation" placeholder="Designation"/><br />
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Link:</label>
+        <input type="text" class="form-control" name="link" id="designation" placeholder="Link of Your Project"/><br />
+    </div>
+    <input type="submit" onclick="alert('Successfully Applied')" value="Save" />
+</form>
+</div>
+{% endblock %}

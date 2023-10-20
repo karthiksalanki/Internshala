@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from user_log import settings
+from django.conf.urls.static import static
 
 
 admin.site.site_header='Internshala administration'     #Django administration in admin pannel
@@ -23,4 +25,5 @@ admin.site.index_title='Site administration'            #site administration in 
 urlpatterns = [
     path('',include('user_logapp.urls')),
     path('admin/', admin.site.urls),
-]
+] + static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

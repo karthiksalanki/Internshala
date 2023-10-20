@@ -8,7 +8,7 @@ from django.contrib.postgres.fields import ArrayField
 class CompanyProfile(models.Model):
     Name = models.CharField(max_length=500)
     Location = models.CharField(max_length=500,null = True, blank = True)
-    CompanyLogo = models.ImageField(upload_to='Company/')
+    CompanyLogo = models.ImageField(upload_to='static/Company/')
     Industry = models.CharField(max_length=500,null = True, blank = True)
     No_of_Emps = models.CharField(max_length=250,null = True, blank = True)
     Hiring_since = models.DateField(auto_now_add=True)
@@ -79,7 +79,7 @@ class Applications(models.Model):
     first_name = models.CharField(max_length=500,null = True, blank = True)
     last_name = models.CharField(max_length=100,null = True, blank = True)
     email = models.EmailField(null = True, blank = True)
-    contact= models.IntegerField(null = True, blank = True)
+    contact= models.CharField(max_length=250,null = True, blank = True)
     address = models.CharField(max_length=250,null = True, blank = True)
     applicant_skills = models.CharField(null = True, blank = True,max_length=200)   #ArrayField(models.CharField(max_length=250), blank=True, null=True)
     relocation = models.CharField(max_length=250,null = True, blank = True)
@@ -95,8 +95,8 @@ class JobApplications(Applications):
         verbose_name = 'JobApplications'
         verbose_name_plural = 'JobApplications'
         
-    # def __str__(self):
-    #     return  self.first_name
+        # def __str__(self):
+        #     return  self.first_name
     
 class InternApplications(Applications):
     internship = models.ForeignKey(Internships,on_delete=models.DO_NOTHING)
@@ -137,3 +137,75 @@ class Savedapplication(models.Model):
         
     def __str__(self):
         return self.user.username
+    
+    
+class Experience(models.Model):
+    organization = models.CharField(max_length=250,null=True,blank=True)
+    location = models.CharField(max_length=250,null=True,blank=True)
+    start_date = models.DateField(auto_now=False,null=True,blank=True)
+    end_date = models.DateField(auto_now=False,null = True, blank = True)
+    description = models.TextField(null=True,blank=True)
+    
+    class Meta:
+        abstract = True
+        
+class JobExperience(Experience):
+    designation = models.CharField(max_length=50,null=True,blank=True)
+    user = models.ForeignKey(User,on_delete=models.DO_NOTHING,null=True,blank=True)
+    
+    class Meta:
+        verbose_name = 'JobExperience'
+        verbose_name_plural = 'JobExperience'
+    
+    def __str__(self):
+        return self.user.username
+
+class InterenshipExperience(Experience):
+    designation = models.CharField(max_length=50,null=True,blank=True)
+    user = models.ForeignKey(User,on_delete=models.DO_NOTHING,null=True,blank=True)
+    
+    class Meta:
+        verbose_name = 'InterenshipExperience'
+        verbose_name_plural = 'InterenshipExperience'
+    
+    def __str__(self):
+        return self.user.username
+    
+class Course(Experience):
+    cource_name = models.CharField(max_length=100,null=True,blank=True)
+    user = models.ForeignKey(User,on_delete=models.DO_NOTHING,null=True,blank=True)
+    
+    class Meta:
+        verbose_name = 'Cource'
+        verbose_name_plural = 'Cource'
+    
+    def __str__(self):
+        return self.user.username
+
+class Projects(models.Model):
+    title = models.CharField(max_length=100,null=True,blank=True)
+    start_date = models.DateField(auto_now=False,null=True,blank=True)
+    end_date = models.DateField(auto_now=False,null = True, blank = True)
+    description = models.TextField(null=True,blank=True)
+    link =  models.URLField(null=True,blank=True)
+    user = models.ForeignKey(User,on_delete=models.DO_NOTHING,null=True,blank=True)
+    
+
+# class Eduacation(models.Model):
+#     college = models.CharField(max_length=150)
+#     stream = models.CharField(50,blank=True,null=True)
+#     start_date = models.DateField(auto_now=True)
+#     end_date = models.DateField(auto_now=True,null = True, blank = True)
+#     description = models.TextField()
+
+class Profile(models.Model):
+    phone = models.CharField(max_length=250,null=True,blank=True)
+    present_location = models.CharField(max_length=250,null=True,blank=True)
+    permanent_location = models.CharField(max_length=250,null=True,blank=True)
+    education =models.TextField(null=True,blank=True)
+    job_experience = models.ForeignKey(JobExperience,on_delete=models.DO_NOTHING,null=True,blank=True)
+    internship_experience = models.ForeignKey(InterenshipExperience,on_delete=models.DO_NOTHING,null=True,blank=True)
+    courses = models.ForeignKey(Course,on_delete=models.DO_NOTHING,null=True,blank=True)
+    projects = models.ForeignKey(Projects,on_delete=models.DO_NOTHING,null=True,blank=True)
+    user = models.ForeignKey(User,on_delete=models.DO_NOTHING,null=True,blank=True)
+    skills = models.TextField(null=True,blank=True)

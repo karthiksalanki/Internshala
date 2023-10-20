@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Home Page</title>
+		<title>HomePage</title>
 		{% load static %}
 		<link rel="stylesheet" type="text/css" href="{% static 'mystyle.css' %}">
 		<link
@@ -21,6 +21,7 @@
 	<body>
 		<div class="header">
 			<h1>Intershala</h1>
+			{% comment %} <img src="/media/static/Company/Internshala2.png" width="200" height="75" alt="Intershala"/> {% endcomment %}
 		</div>
 		<div class="topnav">
 			{% if user.is_authenticated %}
@@ -43,16 +44,20 @@
 					<div class="saved">
 					<a href="{% url 'saved' %}" class="w3-bar-item w3-button">Saved</a>
 					</div>
-					<div class="Forgotpassword">
-					<a href="{% url 'send_email_reset' %}" class="w3-bar-item w3-button">Forgot Password</a>
+					{% comment %} <div class="Changepassword">
+					<a href="{% url 'changepassword' %}" class="w3-bar-item w3-button">Reset Password</a>
+					</div> {% endcomment %}
+					<div class="Profileform">
+						<a href="{% url 'profileform' %}" class="w3-bar-item w3-button">Profile</a>
 					</div>
 					{% comment %} <a href="{% url 'send_email_reset' %}" class="w3-bar-item w3-button">Forgot Password</a> {% endcomment %}
 				</div>
 			</div>
 		{% else %}
 		<div class="topnav"></div>
-			<a href="login">Login</a>
-			<a href="register">Register</a>
+			<a href="{% url 'login' %}">Login</a>
+			<a href="{% url 'register' %}">Register</a>
+			<a href="{% url 'send_email_reset' %}">Forgot Password</a>
 		</div>
 		{% endif %}
 		<p align="center"><b><h1>{{ text }}</h1></b></p>
@@ -71,5 +76,60 @@
 		{% block content %}
 
 		{% endblock %}
+		{% if images %}
+		<div class="adds" align="center">
+			<img src="/media/static/Company/course1.png" width="700" height="400" alt="Intershala"/><br><hr>
+			<img src="/media/static/Company/course2.png" width="700" height="400" alt="Intershala"/><br><hr>
+			<img src="/media/static/Company/course3.png" width="700" height="400" alt="Intershala"/><br><hr>
+			<img src="/media/static/Company/course1.png" width="700" height="400" alt="Intershala"/><br><hr>
+		</div>
+		{% comment %} <div class="w3-container">
+			<h2>Slideshow Indicators</h2>
+			<p>An example of using buttons to indicate how many slides there are in the slideshow, and which slide the user is currently viewing.</p>
+		  </div>
+		  
+		  <div class="w3-content w3-display-container" style="max-width:800px">
+			<img class="mySlides" src="/media/static/Company/course1.png" style="width:100%">
+			<img class="mySlides" src="/media/static/Company/course2.png.jpg" style="width:100%">
+			<img class="mySlides" src="/media/static/Company/course3.png.jpg" style="width:100%">
+			<img class="mySlides" src="/media/static/Company/course4.png.jpg" style="width:100%">
+			<div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+			  <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+			  <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+			  <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+			  <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+			  <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+			</div>
+		  </div>
+		  
+		  <script>
+		  var slideIndex = 1;
+		  showDivs(slideIndex);
+		  
+		  function plusDivs(n) {
+			showDivs(slideIndex += n);
+		  }
+		  
+		  function currentDiv(n) {
+			showDivs(slideIndex = n);
+		  }
+		  
+		  function showDivs(n) {
+			var i;
+			var x = document.getElementsByClassName("mySlides");
+			var dots = document.getElementsByClassName("demo");
+			if (n > x.length) {slideIndex = 1}
+			if (n < 1) {slideIndex = x.length}
+			for (i = 0; i < x.length; i++) {
+			  x[i].style.display = "none";  
+			}
+			for (i = 0; i < dots.length; i++) {
+			  dots[i].className = dots[i].className.replace(" w3-white", "");
+			}
+			x[slideIndex-1].style.display = "block";  
+			dots[slideIndex-1].className += " w3-white";
+		  }
+		  </script> {% endcomment %}
+		{% endif %}
 	</body>
 </html>

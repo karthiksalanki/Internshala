@@ -1,4 +1,5 @@
-{% extends 'index.html' %} {% block link %}
+{% extends 'index.html' %} {% load static %} {% block link %}
+
 <link
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
   rel="stylesheet"
@@ -10,12 +11,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %} {% block content %}
         <div class="detail-view">
-            <h1>{{data.Role}}</h1>
             <div class="company-name">
+                <h1>{{data.Role}}</h1>
                 {{data.CompanyProfile.Name}}
-                <div class="logo">
-                <img src="\Resumes\download.png" alt="img not loading">
-                </div>
+            </div>
+            <div class="logo">
+            <img src="{{ data.CompanyProfile.CompanyLogo.url }}" width="200" height="75" alt="{{ data.CompanyProfile.Name }}"/> <br>{{data.date_of_post}}
             </div>
             <div class="basicdetailes">
                 <div class="loc">
@@ -27,13 +28,19 @@
                     </svg> {{data.Salary}}
                 </div>
                 {% if data.Experience %}
-                    <div class="save"><a href="{% url 'PostSave' jobtype='job' id=data.id %}">
-                {% else %}
-                    <div class="save"><a href="{% url 'PostSave' jobtype='internship' id=data.id %}">
-                {% endif %}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+                    {{ data.Experience }}
+                    {% if msg %}<div class="save">{{ msg }} {% else %}
+                    <div class="save"><a href="{% url 'PostSave' jobtype='job' id=data.id %}">                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
                         <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                    </svg></a>                  <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+                    </svg></a> {% endif %}
+                {% else %}
+                    {{ data.Duration }}
+                    {% if msg %}<div class="save">{{ msg }} {% else %}
+                    <div class="save"><a href="{% url 'PostSave' jobtype='internship' id=data.id %}">                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                    </svg></a> {% endif %}
+                {% endif %}
+                 <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
                         <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
                       </svg></a>
                 </div>
@@ -47,12 +54,12 @@
                 <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
               </svg>
             </a>
-            <p>{{data.CompanyProfile.About}}<br><br>
+            <p>{{data.CompanyProfile.About|linebreaks }}<br><br>
             {% comment %} <p>Founded in 1984, SolidCAM has over 30 years of expertise in CAM development and applications. The core strategy of SolidCAM focuses on integration in the leading 3D CAD systems, SOLIDWORKS and Autodesk Inventor. This strategy has created major growth and established SolidCAM as both the leader in Integrated CAM, as well as one of the most powerful CAM systems available.
                 SolidCAM India was founded in 2008 and since then has grown to be one of the main players in the CAM market. Growing at an impressive growth rate & the introduction of some key cutting-edge technologies in the latest version puts SolidCAM in the pole position in the CAM market of India.</p> {% endcomment %}
 
             <b>Key responsibilities:</b><br>
-            <p>{{data.Responsibilities}}</b><br><br>
+            <p>{{data.Responsibilities|linebreaks }}</b><br>
                 {% comment %} 1. Mastermind Technical Support: Dive into the realm of technology and provide unwavering technical support to our brilliant team members. Your expertise will be the guiding light for our IT infrastructure.</p>
                 2. Decode Hardware/Software Puzzles: Thrive in the thrill of troubleshooting hardware and software issues. You'll be the Sherlock Holmes of our IT world, solving mysteries that keep our systems running smoothly.</p>
                 3. Document & Inventory Maestro: Maintain our IT documentation and keep an eagle eye on inventory. You'll be our meticulous archivist ensuring that nothing slips through the cracks.</p>
@@ -60,9 +67,9 @@
                 5. Versatile Virtuoso: Embrace the opportunity to wear multiple hats and take on any challenge that comes your way. Your adaptability will be your superpower.</p>
                 <br> {% endcomment %}
                 <b>Skill(s) required :</b><br>
-                <p>{{data.Skills}}<br><br>
+                <p>{{data.Skills|linebreaks }}<br>
                 <b>Who can apply</b></p>
-                <p>{{data.Eligibility}}</p>
+                <p>{{data.Eligibility|linebreaks}}</p>
                 {% comment %} <p>1. A freshly minted degree in computer science, information technology, or a related field is your ticket to the adventure.</p>
 
                 <p>2. Excellent communication and interpersonal skills because teamwork makes the dream work!</p>
@@ -81,7 +88,7 @@
                 Free snacks & beverages,
                 Health Insurance</p> {% endcomment %}
             <b>Number Of Openings</b><br>
-            <p>{{data.No_0f_openings}}</p>
+            <p>{{data.No_of_openings}}</p>
             <div class="button">
 				{% if data.Experience %}
                 <a href="{% url 'apply_now' jobtype='job' id=data.id %}" ><button type="button" class="btn btn-primary btn-lg">Apply Now</button></a>

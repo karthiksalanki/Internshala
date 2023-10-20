@@ -1,0 +1,48 @@
+{% extends 'index.html' %} {% block content %}
+<div class="subprofileform">
+  <form method="POST" enctype="multipart/form-data">
+    {% if data == 'jobexperience' %}
+    <h3 align="center">Job Details</h3>
+    {% elif data == 'internshipexperience' %}
+    <h3 align="center">Internshihp Details</h3>
+    {% else %}
+    <h3 align="center">Training Details</h3>
+    {% endif %}
+    <br />
+    {% csrf_token %}
+    <div class="mb-3">{% if data == 'courses' %}
+      <label for="exampleFormControlInput1" class="form-label">Training Program:</label>
+      {% else %}
+      <label for="exampleFormControlInput1" class="form-label">e.g. Operations:</label>
+      {% endif %}
+      <input type="text" class="form-control" name="designation" id="designation" placeholder="Analytics" />
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label" >Organization:</label>
+      <input type="text" class="form-control" name="organization" id="organization" placeholder="e.g. Internshala"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Location:</label>
+      <input type="text" class="form-control" name="location"id="organization"placeholder="e.g. Bangalore"/>
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label" >Start Date:</label>
+      <input type="date" class="form-control" name="startdate" id="startdate" placeholder="Choose date"/>
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">End Date:</label>
+      <input type="date" class="form-control" name="enddate" id="lastdate" placeholder="Choose date"/><br />
+      <input class="form-check-input" type="checkbox" name="working" value="working" id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault">
+        currently working
+      </label>
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label" >Description:</label>
+      <input type="text" class="form-control" name="description" id="description" placeholder="short description"/><br />
+    </div>
+    <input type="submit" onclick="alert('Successfully Applied')" value="Save" />
+  </form>
+</div> <br><br>
+{% endblock %}<br><br>

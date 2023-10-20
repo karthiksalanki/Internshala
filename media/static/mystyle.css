@@ -5,11 +5,18 @@
   color: white;
 }
 
+.register {
+  height: 950px;
+  width: 700px;
+  background-color: lightgrey;
+  border-style: groove;
+  padding: 25px;
+  margin-left: 375px;
+}
 
 .topnav {
   background-color: black;
   overflow: hidden;
-  position: sticky;
 }
 .topnav a {
   float: left;
@@ -23,22 +30,6 @@
   color: black;
 }
 
-.register {
-  height: 800px;
-  width: 700px;
-  background-color: lightgrey;
-  border-style: groove;
-  padding: 25px;
-  padding-left: 75px;
-  padding-right:75px;
-  margin-left: 350px;
-}
-
-.company-name {
-  text-align: left;
-  float:left;
-}
-
 .welcome {
   float: right;
   text-align: right;
@@ -48,15 +39,6 @@
   margin-left: 170px;
   float: center;
   align-items: center;
-}
-
-.detail-view{
-  background-color: lightgrey;
-  width: 800px;
-  border-style :groove;
-  border-radius: 5px;
-  padding: 50px;
-  margin-left: 300px;
 }
 
 #demo.w3-dropdown-content.w3-bar-block.w3-card.w3-show {
@@ -95,6 +77,15 @@
   border: 5px solid black;
 }
 
+/* .profileform {
+  height: 1350px;
+  width: 700px;
+  background-color: lightgrey;
+  border-style: groove;
+  padding: 25px;
+  margin-left: 375px;
+} */
+
 .profileform {
   height: 1350px;
   width: 900px;
@@ -105,35 +96,22 @@
 }
 
 .subprofileform {
-  height: 750px;
-  width: 700px;
-  background-color: lightgrey;
-  border-style: groove;
-  padding: 25px;
-  margin-left: 350px;
-  padding-left: 50px;
-  padding-right: 50px;
-}
-
-.projectform {
-  height: 700px;
+  height: 800px;
   width: 700px;
   background-color: lightgrey;
   border-style: groove;
   padding: 25px;
   margin-left: 375px;
-  padding-left: 50px;
-  padding-right: 50px;
 }
 
-.registerform {
+/* .register {
   height: 1150px;
   width: 700px;
   background-color: lightgrey;
   border-style: groove;
   padding: 25px;
   margin-left: 375px;
-}
+} */
 
 .loginform {
   height: 350px;
@@ -141,35 +119,16 @@
   background-color: lightgrey;
   border-style: groove;
   padding: 25px;
-  padding-left: 55px;
-  padding-right:55px;
-  margin-left: 350px;
+  margin-left: 375px;
 }
 
-.editform {
-  height: 950px;
+.form {
+  height: 1250px;
   width: 700px;
   background-color: lightgrey;
   border-style: groove;
   padding: 25px;
-  margin-left: 350px;
-  padding-left: 50px;
-  padding-right: 50px;
-}
-.forgot_button {
-  text-align: right;
-  float:right;
-}
-
-.form {
-  height: 1350px;
-  width: 800px;
-  background-color: lightgrey;
-  border-style: groove;
-  padding: 25px;
-  padding-left: 55px;
-  padding-right:55px;
-  margin-left: 300px;
+  margin-left: 375px;
 }
 
 .changepassword {
@@ -180,7 +139,14 @@
   padding: 25px;
   margin-left: 375px;
 }
-
+.detail-view{
+  background-color: lightgrey;
+  width: 800px;
+  border-style :groove;
+  border-radius: 5px;
+  padding: 50px;
+  margin-left: 250px;
+}
 .logo{
   text-align:right;
 }
