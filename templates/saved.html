@@ -13,6 +13,9 @@
 {% endblock %} {% block content %}
 <h2 align="center" text>Saved Applications...</h2><br>
 <div class="border">
+  {% if msg %}
+  <b><h3 align="center">{{ msg }}</b></h3>
+  {% else %}
   <table align="center" >
     <tr>
       <th>Role</th>
@@ -48,9 +51,6 @@
     </tr>
     {% endif %} {% endfor %}
   </table></div><br>
-  {% if msg %}
-  <b><h3 align="center">{{ msg }}</b></h3>
   {% endif %}
-
   {% endblock %}
 </h2>

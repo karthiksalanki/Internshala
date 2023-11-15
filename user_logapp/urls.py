@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
+    #auth related.
     path('',views.index, name ="index"),
     path('base/',views.test,name = "base"),
     path('register/',views.register,name='register'),
@@ -18,7 +19,7 @@ urlpatterns = [
     path('forgotpassword/<str:user>/<slug:token>/',views.reset_password,name ="reset_password"),       #using token
     path('changepassword/',views.changepassword,name ="changepassword"),        #change password
     
-
+    #job or inteernship related.
     path('internview/<int:id>/',views.internshihppostview, name="internpostview"),
     path('jobview/<int:id>/',views.jobpostview, name="jobview"),
     path('apply-now/<str:jobtype>/<int:id>/',views.applynow, name="apply_now"),
@@ -32,10 +33,10 @@ urlpatterns = [
     #path('internships/',views.InternshipList.as_view(),name="internships"),
     path('my-applications/',views.my_applications,name="my_applications"),
     
-    #Profile
+    #Profile related.
     path('profile/',views.profileform, name="profileform"),     #profile
     path('profile/edit/',views.editprofile, name="editprofile"),     #editprofile
-    path('profile/<str:experiencetype>/',views.subprofileform, name="subprofileform"),           #toadd job experience
+    path('profile/<str:experiencetype>/',views.subprofileform, name="subprofileform"),           #to add job experience
     path('profile/<str:experiencetype>/<int:id>/',views.todelete, name="todelete"),
     #path('profile/<str:experiencetype>/',views.addprojects, name="addprojects"),
 ] #+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

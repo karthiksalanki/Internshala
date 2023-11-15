@@ -35,7 +35,8 @@
 		<td>{{ i.Salary }}</td>
 		{% if i.id in applied %}
         <td>
-          <a href="{% url 'apply_now' jobtype='internship' id=i.id %}">Already Applied</a>
+          <a href="#">Already Applied</a>
+		  {% comment %} {% url 'apply_now' jobtype='internship' id=i.id %} {% endcomment %}
         </td>
         <td><a href="{% url 'internpostview' id=i.id %}">Details</a></td>
         {% else %}

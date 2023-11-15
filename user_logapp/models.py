@@ -82,7 +82,8 @@ class Applications(models.Model):
     contact= models.CharField(max_length=250,null = True, blank = True)
     address = models.CharField(max_length=250,null = True, blank = True)
     applicant_skills = models.CharField(null = True, blank = True,max_length=200)   #ArrayField(models.CharField(max_length=250), blank=True, null=True)
-    relocation = models.CharField(max_length=250,null = True, blank = True)
+    mode_of_work = models.CharField(max_length=250,null = True, blank = True)
+    user = models.ForeignKey(User,on_delete=models.DO_NOTHING,null = True, blank = True)
     
     class Meta:
         abstract = True
@@ -95,8 +96,8 @@ class JobApplications(Applications):
         verbose_name = 'JobApplications'
         verbose_name_plural = 'JobApplications'
         
-        # def __str__(self):
-        #     return  self.first_name
+    def __str__(self):
+        return  self.first_name
     
 class InternApplications(Applications):
     internship = models.ForeignKey(Internships,on_delete=models.DO_NOTHING)

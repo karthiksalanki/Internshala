@@ -13,6 +13,9 @@
       <input type="password" class="form-control" name="password" id="exampleFormControlInput1" placeholder="Password"><br />
     </div>
     <input type="submit" name="submit" value="submit" />
+    {% if msg %}
+    {{ msg }}
+    {% endif %}
     {% comment %} <div class=" forgot_button">
       <a href="{% url 'send_email_reset' %}"><input type="submit" name="submit" value="Forgot Password"/></a>
     </div> {% endcomment %}

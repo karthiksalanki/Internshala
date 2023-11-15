@@ -85,7 +85,7 @@ def login(request):
             else:
                 messages.info(request,'user not found')
                 print("logout")
-                return render(request,'login.html')
+                return render(request,'login.html',{'msg':"mentioned username or password is not matching."})
         else:
             return render(request,'login.html')
     except Exception as e:
@@ -217,20 +217,29 @@ def applynow(request,id,jobtype):
             'last_name' : request.POST.get('lname'),
             'email' : request.POST.get('email'),
             'contact' : request.POST.get('number'),
-            'address' : request.POST.get('address'), 
+            'address' : request.POST.get('address'),
+            'mode_of_work' : request.POST.getlist('checkbox'), 
             'resume':request.FILES.get('resume')}
 
             if jobtype == "job":
                 obj = Jobs.objects.get(id = id)
-                jobapplication=JobApplications.objects.create(job=obj,**data)
-                myApplications.objects.create(job_id=obj.id,user=request.user)
-                sendmail(jobapplication.email,jobapplication.first_name,obj.Role,obj.Company_name)
+                check_already_applied = JobApplications.objects.filter(user=request.user,job=id)
+                if check_already_applied is None:
+                    jobapplication=JobApplications.objects.create(job=obj,**data)
+                    obj.Count=obj.Count+1
+                    obj.save()
+                    myApplications.objects.create(job_id=obj.id,user=request.user)
+                    sendmail(jobapplication.email,jobapplication.first_name,obj.Role,obj.Company_name)
                 return redirect('jobs')
             else:
                 obj = Internships.objects.get(id = id)
-                internapplication=myApplications.objects.create(internship_id=obj.id,user=request.user)
-                obj2 = InternApplications.objects.create(internship=obj,**data)
-                sendmail(obj2.email,obj2.first_name,obj.Role,obj.Company_name)
+                check_already_applied = JobApplications.objects.filter(user=request.user,job=id)
+                if check_already_applied is None:
+                    internapplication=myApplications.objects.create(internship_id=obj.id,user=request.user)
+                    obj2 = InternApplications.objects.create(internship=obj,**data)
+                    obj.Count=obj.Count+1
+                    obj.save()
+                    sendmail(obj2.email,obj2.first_name,obj.Role,obj.Company_name)
                 return redirect('internships')
     except Exception as e:
         return JsonResponse({'error': 'An error occurred: ' + str(e)}, status=500)
@@ -238,8 +247,12 @@ def applynow(request,id,jobtype):
 # my-applications list
 def my_applications(request):
     try:
+        msg = "Your have not applied for any jobs or internships"
         applications = myApplications.objects.all().filter(user_id=request.user).order_by('-id')
-        return render(request,'my_applications.html',{'myapplications' : applications})
+        if applications.count()>=1:
+            return render(request,'my_applications.html',{'myapplications' : applications,})
+        else:
+            return render(request,'my_applications.html',{'myapplications' : applications,'msg':msg})
     except Exception as e:
         return JsonResponse({'error': 'An error occurred: ' + str(e)}, status=500)
 
@@ -259,22 +272,34 @@ def sendmail(email,fname,role,company):
 def internshihppostview(request,id):
     try:
         postdata = Internships.objects.get(id = id)
+        applicationdata = myApplications.objects.filter(user=request.user,internship_id = id).first()
+        print(id,postdata,applicationdata)
+        if applicationdata is not None:
+            internship_applied="Already Applied"
+        else:
+            internship_applied="Apply Now"
         saved_data = Savedapplication.objects.filter(internship_id=postdata.id).filter(user_id=request.user)
         if saved_data.count()>0:
-            return render(request,'view.html',{'data':postdata,'msg':"internship saved"})
+            return render(request,'view.html',{'data':postdata,'msg':"internship saved",'check_applied_or_not':internship_applied})
         else:    
-            return render(request,'view.html',{'data':postdata})
+            return render(request,'view.html',{'data':postdata,'check_applied_or_not':internship_applied})
     except Exception as e:
         return JsonResponse({'error': 'An error occurred: ' + str(e)}, status=500)
 
 # Detailview
 def jobpostview(request,id):
         postdata = Jobs.objects.get(id = id)
+        applicationdata = myApplications.objects.filter(user=request.user,job_id = id).first()
+        print(id,postdata,applicationdata)
+        if applicationdata is not None:
+            job_applied="Already Applied"
+        else:
+            job_applied="Apply Now"
         saved_data = Savedapplication.objects.filter(job_id=postdata.id).filter(user_id=request.user)
         if saved_data.count()>0:
-            return render(request,'view.html',{'data':postdata,'msg':"job saved"})
+            return render(request,'view.html',{'data':postdata,'msg':"job saved",'check_applied_or_not':job_applied})
         else:
-            return render(request,'view.html',{'data':postdata})
+            return render(request,'view.html',{'data':postdata,'check_applied_or_not':job_applied})
 
     
 # To Save 
@@ -323,7 +348,7 @@ def saved_application(request):
     try:
         saveddata=Savedapplication.objects.all().filter(user_id=request.user).order_by('-id')
         if saveddata.count() == 0:
-            msg = "No Job or Internships Saved"
+            msg = "No Jobs or Internships Saved"
             return render(request,'saved.html',{'msg':msg})
         return render(request,'saved.html',{'data':saveddata})
     except Exception as e:
@@ -498,4 +523,3 @@ def editprofile(request):
 #             return redirect('profileform')
 #     except Exception as e:
 #         return Response(str(e))
-        
